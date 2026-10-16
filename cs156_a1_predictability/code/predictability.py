@@ -30,6 +30,7 @@ which while who whom whose why will with within without would yet you your yours
 don't doesn't didn't won't wouldn't can't couldn't shouldn't it's that's there's what's""".split())
 
 
+# raw text of one essay file
 def read(name):
     return open(os.path.join(ESSAYS, f"essay_{name}.txt"), encoding="utf-8").read()
 
@@ -37,6 +38,7 @@ def read(name):
 CITE = re.compile(r"\([^()]*\b(?:19|20)\d{2}[a-z]?[^()]*\)")
 
 
+# lower-case the text, drop parenthetical citations, split into sentences
 def sentences(text):
     text = text.lower().replace("’", "'").replace("‘", "'")
     text = CITE.sub(" ", text)                     # parenthetical citations are not my voice
@@ -44,6 +46,7 @@ def sentences(text):
     return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
 
 
+# words of one sentence between <s> and </s>; numbers become <num>, and with mask=True non-function words become <w>
 def tokens(sentence, mask):
     sentence = re.sub(r"\d+(?:[.,]\d+)*", " <num> ", sentence)
     words = re.findall(r"<num>|[a-z]+(?:'[a-z]+)?", sentence)
@@ -52,10 +55,12 @@ def tokens(sentence, mask):
     return ["<s>"] + words + ["</s>"]
 
 
+# one essay as a list of token lists, one per sentence
 def essay_sents(name, mask):
     return [tokens(s, mask) for s in sentences(read(name))]
 
 
+# number of tokens the model has to predict (every token except the opening <s>)
 def n_predicted(sents):
     return sum(len(s) - 1 for s in sents)
 
@@ -85,6 +90,7 @@ def bits(test, big, ctx, uni, n, V, alpha, order):
     return tot / k
 
 
+# counts in `total` with `part` taken out (used for leave-one-essay-out)
 def minus(total, part):
     return {k: total[k] - part.get(k, 0) for k in total}
 
@@ -128,6 +134,12 @@ def draw_training(pool, n_train, rng):
 
 
 def run(early, recent, mask, label):
+    """Run the study for one condition (all words, function words only, or with the group essays).
+    Fits unigram and bigram models on each period, choosing alpha by leave-one-essay-out, and scores
+    every essay under a model trained on its own period and one trained on the other period.
+    N_train is the smallest leave-one-out pool, rounded down to 100 tokens, so both periods get the
+    same amount of text, and an essay is never scored by a model that was trained on it.
+    Returns (info, res, alphas_used); res[(train, test, order)][essay] is mean bits per token."""
     global ESS
     ESS = {n: essay_sents(n, mask) for n in early + recent}
     solo = [n for n in EARLY + RECENT if n in ESS]
@@ -169,6 +181,7 @@ def run(early, recent, mask, label):
     return info, res, alphas_used
 
 
+# arithmetic mean of a list
 def mean(x):
     return sum(x) / len(x)
 
@@ -190,6 +203,9 @@ def perm_test(hE, hR):
 
 
 def summarize(info, res, alphas_used):
+    """Turn the per-essay bits from run() into the numbers reported in the write-up: perplexity for
+    each train/test pair, the early-vs-recent permutation test, the bigram gain over the unigram,
+    drift (how much worse the other period's model does) and which alphas were chosen."""
     out = dict(info=info)
     pp = lambda H: 2 ** H
     table = {}

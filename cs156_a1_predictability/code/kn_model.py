@@ -11,6 +11,7 @@ UNI_ALPHAS = [0.1, 0.3, 1.0, 3.0, 10.0]
 orig_bits, orig_fit = pred.bits, pred.fit_and_alpha
 
 
+# Kneser-Ney counts: n1p[v] = distinct words seen after v, cont[w] = distinct words seen before w, and the number of distinct bigrams
 def kn_tables(big):
     cont, n1p = Counter(), Counter()
     for (v, w), c in big.items():
@@ -21,6 +22,11 @@ def kn_tables(big):
 
 
 def kn_bits(test, tabs, V, D, delta):
+    """Mean surprisal in bits per predicted token of `test` under an interpolated Kneser-Ney bigram.
+    p(w|v) = max(c(v,w) - D, 0) / c(v) + D * n1p(v) / c(v) * p_cont(w), where D is the discount and
+    p_cont(w) = (cont(w) + delta) / (ntypes + delta * V) is how likely w is as a new continuation.
+    If v was never seen as a context, p(w|v) = p_cont(w).
+    `tabs` = (bigram counts, context counts, n1p, cont, ntypes), the last three from kn_tables."""
     big, ctx, n1p, cont, ntypes = tabs
     tot = k = 0
     for (v, w), c in test[0].items():
@@ -33,6 +39,9 @@ def kn_bits(test, tabs, V, D, delta):
 
 
 def my_fit(parts, vocab, order):
+    """Replacement for predictability.fit_and_alpha. Unigram: add-alpha over the wider UNI_ALPHAS grid.
+    Bigram: choose the discount D and fallback delta by leave-one-essay-out over the training essays.
+    Returns ((D, delta), count tables) for the bigram and (alpha, count tables) for the unigram."""
     if order == 1:
         pred.ALPHAS = UNI_ALPHAS
         return orig_fit(parts, vocab, 1)
@@ -55,6 +64,7 @@ def my_fit(parts, vocab, order):
     return best[1], (tb, tc, (n1p, cont, nt), sum(tb.values()))
 
 
+# replacement for predictability.bits: unigram scored as before, bigram scored with Kneser-Ney
 def my_bits(test, big, ctx, extra, n, V, alpha, order):
     if order == 1:
         return orig_bits(test, big, ctx, extra, n, V, alpha, 1)

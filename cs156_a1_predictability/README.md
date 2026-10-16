@@ -29,7 +29,7 @@ bash code/01_extract_text.sh my_pdfs raw_text     # pdftotext -layout on each PD
 bash run_cleaning.sh raw_text data/cleaned_essays
 ```
 
-Run order matters: `clean_tech.py` decides whether to rejoin a line-end hyphen by checking which words appear in the
+Run order matters: `clean_technical_reports.py` decides whether to rejoin a line-end hyphen by checking which words appear in the
 essays already in the output folder, so `clean_essays.py` must run first.
 
 ## Data

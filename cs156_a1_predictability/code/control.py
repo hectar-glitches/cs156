@@ -14,6 +14,7 @@ CHUNK = 300
 FW = sorted(pred.FUNCTION_WORDS)
 NAMES = pred.EARLY + pred.RECENT
 
+# word tokens of one essay, sentence markers removed
 def toks(n):
     return [w for s in (pred.tokens(x, False) for x in pred.sentences(pred.read(n))) for w in s if w not in ("<s>", "</s>")]
 chunks, owner = [], []
@@ -25,19 +26,25 @@ for n in NAMES:
             chunks.append(" ".join(c)); owner.append(n)
 owner = np.array(owner)
 
+# classifier on relative function-word frequencies
 def fw_model():
     cv = CountVectorizer(vocabulary=FW, token_pattern=r"[a-z']+", lowercase=False)
     rel = FunctionTransformer(lambda X: X.toarray() / np.maximum(X.sum(1).A, 1))
     return make_pipeline(cv, rel, StandardScaler(), LogisticRegression(C=0.3, class_weight="balanced", max_iter=2000))
+# classifier on TF-IDF of all words
 def tfidf_model():
     return make_pipeline(TfidfVectorizer(token_pattern=r"[a-z']+|<num>", min_df=2, max_features=2000),
                          LogisticRegression(C=3.0, class_weight="balanced", max_iter=2000))
 
+# chance that a random label-1 essay scores higher than a random label-0 essay (ties count half)
 def auc(labels, probs):
     pos = [probs[n] for n in probs if labels[n] == 1]; neg = [probs[n] for n in probs if labels[n] == 0]
     return sum((p > q) + 0.5 * (p == q) for p in pos for q in neg) / (len(pos) * len(neg))
 
 def loeo(make, labels):
+    """Leave-one-essay-out: hold out each labelled essay, train on the 300-word chunks of the others,
+    and average the predicted probability of label 1 over the held-out essay's chunks.
+    Essays missing from `labels` are never used. Returns (AUC across essays, {essay: probability})."""
     names = list(labels)
     y = np.array([labels.get(o, -1) for o in owner])
     probs = {}

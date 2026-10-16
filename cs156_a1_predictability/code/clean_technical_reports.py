@@ -1,5 +1,5 @@
 """Prose-only extraction from LaTeX-style technical reports (equations, tables and figure panels dropped).
-Usage: python3 -I clean_tech.py RAW_DIR OUT_DIR
+Usage: python3 -I clean_technical_reports.py RAW_DIR OUT_DIR
 """
 import os, re, sys
 RAW, OUT = sys.argv[1], sys.argv[2]
@@ -17,6 +17,9 @@ FOOTNOTE_START = re.compile(r"^\s*(\d{1,2}\s+)?#\w+")
 WORD = re.compile(r"[A-Za-z]+(?:['’][A-Za-z]+)?")
 
 def is_prose(l, prev=False):
+    """True if line `l` looks like running prose rather than an equation, table row or figure label.
+    It passes with 5+ words of 3+ letters, at most one math symbol and mostly letters. When `prev` is
+    True (we are inside a paragraph), a short tail of 2+ words with no math symbols also passes."""
     s = l.strip()
     if not s: return False
     words = [w for w in WORD.findall(s) if len(w) >= 3]
@@ -76,6 +79,7 @@ for stem, cfg in CFG.items():
     # keep only complete prose paragraphs (equation lead-ins and fragments are dropped),
     # and drop sentences that carry inline math symbols or variable names
     BAD = re.compile(r"\b[A-Za-z]{1,2}ij\b|\b[A-Za-z]\s?\(t\)|\(t\)|\b[A-Za-z]\s?\([a-zA-Z]\)")
+    # remove footnote superscripts and list numbers that text extraction glued onto sentences
     def tidy(q):
         q = re.sub(r"(?<=[.)])\s\d{1,2}(?=\s)", "", q)       # superscript after a citation or full stop
         q = re.sub(r"(?<=[a-z]\.)\d{1,2}(?=\s|$)", "", q)     # glued: "peak.3"

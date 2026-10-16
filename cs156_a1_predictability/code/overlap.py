@@ -7,6 +7,7 @@ pred = importlib.util.module_from_spec(spec); spec.loader.exec_module(pred)
 
 pred.ESS = {n: pred.essay_sents(n, False) for n in pred.EARLY + pred.RECENT}
 ESS = pred.ESS
+# word tokens of one essay, sentence markers removed
 def words(name):
     return [w for s in ESS[name] for w in s if w not in ("<s>", "</s>")]
 cnt = {n: words(n) for n in ESS}
@@ -19,6 +20,7 @@ N = int(min(pools) // 100 * 100)
 rng = random.Random(pred.SEED)
 
 def oov_rate(test, pool):
+    """Share of the test essay's word tokens never seen in training, averaged over pred.R random draws of N tokens from `pool`."""
     rates = []
     for _ in range(pred.R):
         parts = pred.draw_training(pool, N, rng)
@@ -45,11 +47,14 @@ print(f"  own-period OOV, recent minus early: {100*d:+.1f} points, exact p = {p:
 # pairwise content-word overlap on equal-length samples (first 740 tokens of every essay)
 M = 740
 fw = pred.FUNCTION_WORDS
+# content-word types in the first M tokens (function words and numbers dropped)
 def vocab(name):
     return {w for w in cnt[name][:M] if w not in fw and w != "<num>"}
 V = {n: vocab(n) for n in ESS}
+# Jaccard overlap of two essays' content-word types
 def jac(a, b):
     return len(V[a] & V[b]) / len(V[a] | V[b])
+# mean Jaccard overlap over a list of essay pairs
 def avg(pairs):
     return m([jac(a, b) for a, b in pairs])
 E_pairs = list(itertools.combinations(pred.EARLY, 2))

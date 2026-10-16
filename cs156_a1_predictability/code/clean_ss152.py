@@ -1,3 +1,7 @@
+"""Pull my own paragraphs out of the SS152 assignment template (the pica playgrounds essay).
+The template mixes instructions with student text, so each of the five paragraphs is taken from its
+opening phrase up to the "Words:" or "Word count:" line that follows it.
+Usage: python3 -I clean_ss152.py RAW_TXT OUT_TXT"""
 import re,sys
 raw=open(sys.argv[1],encoding="utf-8").read().split("\n")
 blocks=[(r"^\s*Our group will explore",r"^\s*Words:"),

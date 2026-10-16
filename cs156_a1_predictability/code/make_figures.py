@@ -17,8 +17,10 @@ plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9, "axes.edgecol
                      "axes.spines.top": False, "axes.spines.right": False, "figure.facecolor": "white",
                      "axes.facecolor": "white", "savefig.facecolor": "white"})
 
+# perplexity from bits per token
 def pp(bits): return 2 ** bits
 
+# perplexity of [unigram, add-alpha bigram, Kneser-Ney bigram] for each period, for one condition
 def models(label):
     a, k = A[label], K[label]
     out = {}

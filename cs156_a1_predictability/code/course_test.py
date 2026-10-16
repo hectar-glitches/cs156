@@ -22,8 +22,11 @@ M = 740
 fw = pred.FUNCTION_WORDS
 cont = {n: [w for w in toks[n][:M] if w not in fw and w != "<num>"] for n in toks}
 types = {n: set(cont[n]) for n in toks}
+# Jaccard overlap of two essays' content-word types
 def jac(a, b): return len(types[a] & types[b]) / len(types[a] | types[b])
+# average share of each essay's content-word tokens that also appear in the other essay
 def cov(a, b): return m([sum(w in types[y] for w in cont[x]) / len(cont[x]) for x, y in ((a, b), (b, a))])
+# all unordered pairs of essays
 def pairs_of(names):
     return list(itertools.combinations(names, 2))
 res = {}
@@ -39,6 +42,8 @@ for label, names in (("early", E_), ("recent", R_)):
     print(f"    Jaccard same {r['same_jaccard']:.3f} vs diff {r['diff_jaccard']:.3f};   coverage same {r['same_cov']:.3f} vs diff {r['diff_cov']:.3f}")
 # pooled test: shuffle course labels within each period, keep course sizes
 def stat(course):
+    """Test statistic: mean Jaccard of same-course pairs minus different-course pairs, pooled over both periods.
+    `course` maps each essay to a course code, so shuffled labels can be passed in for the permutation test."""
     out = []
     for names in (E_, R_):
         for a, b in pairs_of(names):
@@ -57,12 +62,14 @@ print(f"pooled same-course minus different-course Jaccard = {obs:+.3f}; permutat
 res["pooled_same_minus_diff_jaccard"] = obs; res["pooled_p"] = (1 + ge) / (1 + N)
 
 # ---- B. does the early/recent coverage gap survive if no essay is covered by a same-course essay?
+# training pool for essay t: the other essays of its period that come from a different course
 def pool_for(t, names):
     return [x for x in names if x != t and COURSE[x] != COURSE[t]]
 sizes = [sum(pred.n_predicted(pred.ESS[x]) for x in pool_for(t, names)) for names in (E_, R_) for t in names]
 Ntr = int(min(sizes) // 100 * 100)
 rng = random.Random(pred.SEED)
 def oov(t, pool):
+    """Share of essay t's word tokens never seen in training, averaged over pred.R random training draws from `pool`."""
     r = []
     for _ in range(pred.R):
         parts = pred.draw_training(pool, Ntr, rng)
