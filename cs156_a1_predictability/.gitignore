@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+raw_pdfs/
+raw_text/
+.DS_Store
