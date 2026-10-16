@@ -1,0 +1,61 @@
+{
+ "early": {
+  "same": [
+   [
+    "college_persistenc",
+    "sf_marina_food_ban",
+    0.064,
+    0.132
+   ],
+   [
+    "biases_spring2024",
+    "water_fleas_spring",
+    0.04,
+    0.079
+   ],
+   [
+    "surveillance_ethic",
+    "freshman_reflectio",
+    0.054,
+    0.096
+   ]
+  ],
+  "same_jaccard": 0.05288840051780167,
+  "diff_jaccard": 0.05281655350115667,
+  "same_cov": 0.1026585446149415,
+  "diff_cov": 0.11290337730609257,
+  "n_same": 3,
+  "n_diff": 33
+ },
+ "recent": {
+  "same": [
+   [
+    "climate_experience",
+    "pulse_oximetry_fal",
+    0.058,
+    0.108
+   ],
+   [
+    "huntingtons_news_s",
+    "pica_playgrounds_l",
+    0.064,
+    0.12
+   ]
+  ],
+  "same_jaccard": 0.061056071449695395,
+  "diff_jaccard": 0.05353721696753006,
+  "same_cov": 0.1140446895726437,
+  "diff_cov": 0.10835957748877739,
+  "n_same": 2,
+  "n_diff": 13
+ },
+ "pooled_same_minus_diff_jaccard": 0.0031352496271665406,
+ "pooled_p": 0.28254349130173967,
+ "different_course_only": {
+  "N_train": 6500,
+  "early": 0.295614506560014,
+  "recent": 0.3827447287853558,
+  "gap": 0.08713022222534184,
+  "p": 0.0025974025974025974
+ }
+}

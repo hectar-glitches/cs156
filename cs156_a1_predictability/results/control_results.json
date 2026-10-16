@@ -1,0 +1,38 @@
+{
+ "function_words | early_only: Fall 2023 vs Spring 2024": {
+  "auc": 0.8,
+  "sizes": "5 vs 4"
+ },
+ "function_words | recent_only: Fall 2025 vs Spring 2026": {
+  "auc": 0.6666666666666666,
+  "sizes": "3 vs 3"
+ },
+ "function_words | real: early vs recent": {
+  "auc": 1.0,
+  "sizes": "9 vs 6"
+ },
+ "function_words | shuffled 9/6 null": {
+  "mean": 0.4151851851851852,
+  "p95": 0.7629629629629628,
+  "max": 1.0,
+  "frac_ge_real": 0.01
+ },
+ "tfidf_all_words | early_only: Fall 2023 vs Spring 2024": {
+  "auc": 0.55,
+  "sizes": "5 vs 4"
+ },
+ "tfidf_all_words | recent_only: Fall 2025 vs Spring 2026": {
+  "auc": 0.1111111111111111,
+  "sizes": "3 vs 3"
+ },
+ "tfidf_all_words | real: early vs recent": {
+  "auc": 0.9814814814814815,
+  "sizes": "9 vs 6"
+ },
+ "tfidf_all_words | shuffled 9/6 null": {
+  "mean": 0.34407407407407403,
+  "p95": 0.7796296296296296,
+  "max": 0.9814814814814815,
+  "frac_ge_real": 0.01
+ }
+}

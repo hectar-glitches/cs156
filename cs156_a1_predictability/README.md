@@ -10,17 +10,22 @@ An n-gram language model study of my own essays: train a model on one period of 
 code/                  cleaning scripts and study scripts
 data/cleaned_essays/   20 cleaned essay texts (my own writing; names carry the period)
 results/               JSON output of every analysis
-figures/               fig1_models, fig2_essays (PNG for previews, PDF for LaTeX)
+figures/               fig1_models, fig2_essays, pipeline (PNG for previews, PDF for LaTeX)
 run_cleaning.sh        raw text -> cleaned essays            (needs the original PDFs, not included)
 run_study.sh           cleaned essays -> results + figures   (works from this repo alone)
 ```
 
+`fig1_models` and `fig2_essays` are made by `make_figures.py`. `pipeline` is the diagram of the steps from raw essays to results; no script generates it.
+
 ## Reproduce the study
 
 ```bash
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 bash run_study.sh        # a few minutes; fixed seed (156)
 ```
+
+Use a virtual environment: the scripts run with `python3 -I`, which ignores packages installed outside it.
 
 ## Cleaning steps
 
@@ -47,7 +52,7 @@ Which essays belong to which period is set at the top of `code/predictability.py
 
 | Script | Output |
 |---|---|
-| `predictability.py` | add-alpha unigram and bigram, 2x2 train/test perplexity table, exact permutation tests, function-word and with-group runs (`results.json`) |
+| `predictability.py` | add-alpha unigram and bigram, train/test perplexity table (early vs recent), exact permutation tests, function-word and with-group runs (`results.json`) |
 | `kn_model.py` | the same study with an interpolated Kneser-Ney bigram (`kn_results.json`) |
 | `overlap.py` | unseen-word share and word overlap between periods |
 | `classifier.py` | leave-one-essay-out logistic regression (function words, TF-IDF) and compression checks |

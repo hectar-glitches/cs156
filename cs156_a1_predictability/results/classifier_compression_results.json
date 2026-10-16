@@ -1,0 +1,135 @@
+{
+ "function_words": {
+  "balanced_accuracy": 0.9166666666666667,
+  "p": 0.006644518272425249,
+  "null_mean": 0.4446296296296297,
+  "misclassified": [
+   "brain_criticality_fall2025"
+  ],
+  "prob_recent": {
+   "college_persistence_fall2023": 0.038,
+   "sf_marina_food_bank_fall2023": 0.089,
+   "kenya_democratic_machine_fall2023": 0.213,
+   "food_security_part2_fall2023": 0.315,
+   "udemy_statistical_inference_fall2023": 0.128,
+   "biases_spring2024": 0.076,
+   "water_fleas_spring2024": 0.055,
+   "surveillance_ethics_spring2024": 0.136,
+   "freshman_reflection_spring2024": 0.002,
+   "climate_experience_fall2025": 0.624,
+   "brain_criticality_fall2025": 0.396,
+   "pulse_oximetry_fall2025": 0.798,
+   "pm25_resolution_review_spring2026": 0.967,
+   "huntingtons_news_spring2026": 0.831,
+   "pica_playgrounds_lba_spring2026": 0.812
+  },
+  "early_words": [
+   "their",
+   "to",
+   "being",
+   "be",
+   "would",
+   "they",
+   "there",
+   "them",
+   "might",
+   "his",
+   "our",
+   "can"
+  ],
+  "recent_words": [
+   "and",
+   "across",
+   "or",
+   "how",
+   "although",
+   "may",
+   "because",
+   "rather",
+   "that",
+   "why",
+   "at",
+   "often"
+  ]
+ },
+ "tfidf_all_words": {
+  "balanced_accuracy": 0.8333333333333333,
+  "p": 0.006644518272425249,
+  "null_mean": 0.41564814814814816,
+  "misclassified": [
+   "brain_criticality_fall2025",
+   "pulse_oximetry_fall2025"
+  ],
+  "prob_recent": {
+   "college_persistence_fall2023": 0.282,
+   "sf_marina_food_bank_fall2023": 0.228,
+   "kenya_democratic_machine_fall2023": 0.293,
+   "food_security_part2_fall2023": 0.261,
+   "udemy_statistical_inference_fall2023": 0.311,
+   "biases_spring2024": 0.278,
+   "water_fleas_spring2024": 0.422,
+   "surveillance_ethics_spring2024": 0.262,
+   "freshman_reflection_spring2024": 0.263,
+   "climate_experience_fall2025": 0.546,
+   "brain_criticality_fall2025": 0.364,
+   "pulse_oximetry_fall2025": 0.496,
+   "pm25_resolution_review_spring2026": 0.614,
+   "huntingtons_news_spring2026": 0.565,
+   "pica_playgrounds_lba_spring2026": 0.536
+  }
+ },
+ "compression": {
+  "all_words_gzip": {
+   "early": 3.389737065309584,
+   "recent": 3.3059796437659035,
+   "delta": -0.08375742154368071,
+   "p": 0.35104895104895106,
+   "chars": 4192
+  },
+  "all_words_bz2": {
+   "early": 3.258269720101781,
+   "recent": 3.2086513994910937,
+   "delta": -0.04961832061068705,
+   "p": 0.5284715284715285,
+   "chars": 4192
+  },
+  "all_words_lzma": {
+   "early": 3.5716709075487705,
+   "recent": 3.4961832061068705,
+   "delta": -0.07548770144189909,
+   "p": 0.42877122877122875,
+   "chars": 4192
+  },
+  "ncd_all_words": {
+   "early_early": 0.8313274077904945,
+   "recent_recent": 0.8259992233613962,
+   "early_recent": 0.8386746556622117
+  },
+  "function_words_gzip": {
+   "early": 2.4440162706058657,
+   "recent": 2.1149646756583174,
+   "delta": -0.32905159494754876,
+   "p": 0.0001998001998001998,
+   "chars": 2076
+  },
+  "function_words_bz2": {
+   "early": 2.2586169985013913,
+   "recent": 1.9595375722543353,
+   "delta": -0.2990794262470564,
+   "p": 0.0001998001998001998,
+   "chars": 2076
+  },
+  "function_words_lzma": {
+   "early": 2.6906444016270608,
+   "recent": 2.350674373795761,
+   "delta": -0.33997002783129915,
+   "p": 0.0003996003996003996,
+   "chars": 2076
+  },
+  "ncd_function_words": {
+   "early_early": 0.7153750142060058,
+   "recent_recent": 0.7045577897006469,
+   "early_recent": 0.7437917878497621
+  }
+ }
+}

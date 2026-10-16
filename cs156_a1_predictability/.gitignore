@@ -3,3 +3,4 @@ __pycache__/
 raw_pdfs/
 raw_text/
 .DS_Store
+.venv/
