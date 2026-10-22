@@ -1,0 +1,332 @@
+{
+ "main": {
+  "info": {
+   "label": "main",
+   "vocab": 2170,
+   "n_train": 7400,
+   "tokens": {
+    "college_persistence_fall2023": 1586,
+    "sf_marina_food_bank_fall2023": 1431,
+    "kenya_democratic_machine_fall2023": 1590,
+    "food_security_part2_fall2023": 1189,
+    "udemy_statistical_inference_fall2023": 1243,
+    "biases_spring2024": 743,
+    "water_fleas_spring2024": 1360,
+    "surveillance_ethics_spring2024": 1268,
+    "freshman_reflection_spring2024": 1387,
+    "climate_experience_fall2025": 1301,
+    "brain_criticality_fall2025": 2337,
+    "pulse_oximetry_fall2025": 1910,
+    "pm25_resolution_review_spring2026": 1967,
+    "huntingtons_news_spring2026": 1139,
+    "pica_playgrounds_lba_spring2026": 1095
+   }
+  },
+  "table": {
+   "E->E": {
+    "mean_bits": 8.446123800896384,
+    "PP_geo": 348.767984146638,
+    "PP_arith": 353.8158454645988
+   },
+   "E->R": {
+    "mean_bits": 9.765256353088988,
+    "PP_geo": 870.232057280992,
+    "PP_arith": 881.4981668087572
+   },
+   "R->E": {
+    "mean_bits": 9.07629325933755,
+    "PP_geo": 539.8045246555745,
+    "PP_arith": 541.0281730167563
+   },
+   "R->R": {
+    "mean_bits": 9.548557212618618,
+    "PP_geo": 748.862591197505,
+    "PP_arith": 751.9243827753729
+   }
+  },
+  "own_period_bigram": {
+   "delta_bits": 1.1024334117222345,
+   "p": 0.0001998001998001998,
+   "n_perm": 5005
+  },
+  "bigram_gain": {
+   "early": 0.2771201217409597,
+   "recent": -0.026924058413654233,
+   "delta": -0.30404418015461393,
+   "p": 0.0003996003996003996
+  },
+  "drift_on_recent": 0.21669914047036976,
+  "drift_on_early": 0.6301694584411663,
+  "per_essay_bits": {
+   "E->E": {
+    "college_persistence_fall2023": 8.344670147661914,
+    "sf_marina_food_bank_fall2023": 8.221120898488305,
+    "kenya_democratic_machine_fall2023": 8.516511217901876,
+    "food_security_part2_fall2023": 8.221327807978733,
+    "udemy_statistical_inference_fall2023": 8.509137806072022,
+    "biases_spring2024": 8.35781660502676,
+    "water_fleas_spring2024": 9.007886255141184,
+    "surveillance_ethics_spring2024": 8.588653630667281,
+    "freshman_reflection_spring2024": 8.247989839129387
+   },
+   "E->R": {
+    "climate_experience_fall2025": 9.608841089799663,
+    "brain_criticality_fall2025": 9.660738981397712,
+    "pulse_oximetry_fall2025": 9.938768499014833,
+    "pm25_resolution_review_spring2026": 10.191119639410811,
+    "huntingtons_news_spring2026": 9.629793413246999,
+    "pica_playgrounds_lba_spring2026": 9.56227649566392
+   },
+   "R->E": {
+    "college_persistence_fall2023": 9.149852732750206,
+    "sf_marina_food_bank_fall2023": 9.088625774805836,
+    "kenya_democratic_machine_fall2023": 8.916750075124673,
+    "food_security_part2_fall2023": 9.036752659667142,
+    "udemy_statistical_inference_fall2023": 8.995392023145302,
+    "biases_spring2024": 8.962772044475829,
+    "water_fleas_spring2024": 9.187599720431217,
+    "surveillance_ethics_spring2024": 9.145674841329841,
+    "freshman_reflection_spring2024": 9.203219462307901
+   },
+   "R->R": {
+    "climate_experience_fall2025": 9.61266749808197,
+    "brain_criticality_fall2025": 9.54920422774103,
+    "pulse_oximetry_fall2025": 9.615149566394184,
+    "pm25_resolution_review_spring2026": 9.725528902044232,
+    "huntingtons_news_spring2026": 9.303298629912655,
+    "pica_playgrounds_lba_spring2026": 9.485494451537642
+   }
+  },
+  "alpha_chosen": {
+   "E-order1-a1.0": 200,
+   "E-order2-a(0.8, 0.5)": 10,
+   "E-order2-a(0.95, 0.5)": 190,
+   "R-order1-a3.0": 140,
+   "R-order2-a(0.95, 0.5)": 140
+  }
+ },
+ "function_words": {
+  "info": {
+   "label": "function_words",
+   "vocab": 162,
+   "n_train": 7400,
+   "tokens": {
+    "college_persistence_fall2023": 1586,
+    "sf_marina_food_bank_fall2023": 1431,
+    "kenya_democratic_machine_fall2023": 1590,
+    "food_security_part2_fall2023": 1189,
+    "udemy_statistical_inference_fall2023": 1243,
+    "biases_spring2024": 743,
+    "water_fleas_spring2024": 1360,
+    "surveillance_ethics_spring2024": 1268,
+    "freshman_reflection_spring2024": 1387,
+    "climate_experience_fall2025": 1301,
+    "brain_criticality_fall2025": 2337,
+    "pulse_oximetry_fall2025": 1910,
+    "pm25_resolution_review_spring2026": 1967,
+    "huntingtons_news_spring2026": 1139,
+    "pica_playgrounds_lba_spring2026": 1095
+   }
+  },
+  "table": {
+   "E->E": {
+    "mean_bits": 3.5286614524329365,
+    "PP_geo": 11.540720993536805,
+    "PP_arith": 11.788027052859512
+   },
+   "E->R": {
+    "mean_bits": 3.088368746914171,
+    "PP_geo": 8.505339046719856,
+    "PP_arith": 8.554553852527745
+   },
+   "R->E": {
+    "mean_bits": 3.8661977998351813,
+    "PP_geo": 14.58281972185955,
+    "PP_arith": 15.259394666902741
+   },
+   "R->R": {
+    "mean_bits": 2.882196545043886,
+    "PP_geo": 7.372717840757509,
+    "PP_arith": 7.415963279494684
+   }
+  },
+  "own_period_bigram": {
+   "delta_bits": -0.6464649073890505,
+   "p": 0.0001998001998001998,
+   "n_perm": 5005
+  },
+  "bigram_gain": {
+   "early": 0.3738879421561191,
+   "recent": 0.17779316156787503,
+   "delta": -0.19609478058824406,
+   "p": 0.0001998001998001998
+  },
+  "drift_on_recent": 0.20617220187028495,
+  "drift_on_early": 0.3375363474022448,
+  "per_essay_bits": {
+   "E->E": {
+    "college_persistence_fall2023": 3.473030983053756,
+    "sf_marina_food_bank_fall2023": 3.3206078911900967,
+    "kenya_democratic_machine_fall2023": 3.477619157209554,
+    "food_security_part2_fall2023": 3.5276138665717545,
+    "udemy_statistical_inference_fall2023": 3.516613579136569,
+    "biases_spring2024": 3.495796619107749,
+    "water_fleas_spring2024": 3.398421609222704,
+    "surveillance_ethics_spring2024": 3.269226761046066,
+    "freshman_reflection_spring2024": 4.279022605358177
+   },
+   "E->R": {
+    "climate_experience_fall2025": 3.2238211188550254,
+    "brain_criticality_fall2025": 2.965819352344676,
+    "pulse_oximetry_fall2025": 2.914144167281674,
+    "pm25_resolution_review_spring2026": 3.2045820147441653,
+    "huntingtons_news_spring2026": 2.9295482234057877,
+    "pica_playgrounds_lba_spring2026": 3.2922976048536983
+   },
+   "R->E": {
+    "college_persistence_fall2023": 3.820480235097206,
+    "sf_marina_food_bank_fall2023": 3.6133758424073177,
+    "kenya_democratic_machine_fall2023": 3.6925312109530237,
+    "food_security_part2_fall2023": 3.8007508186274492,
+    "udemy_statistical_inference_fall2023": 3.8501598059330164,
+    "biases_spring2024": 4.041771429346793,
+    "water_fleas_spring2024": 3.6187250112014993,
+    "surveillance_ethics_spring2024": 3.4518120614145253,
+    "freshman_reflection_spring2024": 4.906173783535799
+   },
+   "R->R": {
+    "climate_experience_fall2025": 2.9661706964644194,
+    "brain_criticality_fall2025": 2.927181032960229,
+    "pulse_oximetry_fall2025": 2.7007549538487674,
+    "pm25_resolution_review_spring2026": 2.8745602044261394,
+    "huntingtons_news_spring2026": 2.6870245877335983,
+    "pica_playgrounds_lba_spring2026": 3.137487794830162
+   }
+  },
+  "alpha_chosen": {
+   "E-order1-a1.0": 199,
+   "E-order1-a3.0": 1,
+   "E-order2-a(0.8, 0.5)": 200,
+   "R-order1-a1.0": 140,
+   "R-order2-a(0.8, 0.5)": 140
+  }
+ },
+ "with_group": {
+  "info": {
+   "label": "with_group",
+   "vocab": 2170,
+   "n_train": 8600,
+   "tokens": {
+    "college_persistence_fall2023": 1586,
+    "sf_marina_food_bank_fall2023": 1431,
+    "kenya_democratic_machine_fall2023": 1590,
+    "food_security_part2_fall2023": 1189,
+    "udemy_statistical_inference_fall2023": 1243,
+    "biases_spring2024": 743,
+    "water_fleas_spring2024": 1360,
+    "surveillance_ethics_spring2024": 1268,
+    "freshman_reflection_spring2024": 1387,
+    "procrastination_fall2023_GROUP": 1538,
+    "scientific_proposal_part2_fall2023_GROUP": 1469,
+    "sf_transit_survey_spring2024_GROUP": 1725,
+    "climate_experience_fall2025": 1301,
+    "brain_criticality_fall2025": 2337,
+    "pulse_oximetry_fall2025": 1910,
+    "pm25_resolution_review_spring2026": 1967,
+    "huntingtons_news_spring2026": 1139,
+    "pica_playgrounds_lba_spring2026": 1095,
+    "airport_queue_fall2025_GROUP": 1229
+   }
+  },
+  "table": {
+   "E->E": {
+    "mean_bits": 8.10862626547338,
+    "PP_geo": 276.0194775684139,
+    "PP_arith": 293.1368284034695
+   },
+   "E->R": {
+    "mean_bits": 9.394521249222427,
+    "PP_geo": 673.0273155812935,
+    "PP_arith": 770.345934376705
+   },
+   "R->E": {
+    "mean_bits": 8.755020718308783,
+    "PP_geo": 432.0398920286235,
+    "PP_arith": 458.4936171512241
+   },
+   "R->R": {
+    "mean_bits": 9.18340714446784,
+    "PP_geo": 581.408012908369,
+    "PP_arith": 651.5396008543164
+   }
+  },
+  "own_period_bigram": {
+   "delta_bits": 1.07478087899446,
+   "p": 0.005497340636659522,
+   "n_perm": 50388
+  },
+  "bigram_gain": {
+   "early": 0.3074340312753994,
+   "recent": 0.029984502432804483,
+   "delta": -0.27744952884259494,
+   "p": 0.0028578232912598238
+  },
+  "drift_on_recent": 0.21111410475458747,
+  "drift_on_early": 0.6463944528354038,
+  "per_essay_bits": {
+   "E->E": {
+    "college_persistence_fall2023": 8.184791072228595,
+    "sf_marina_food_bank_fall2023": 8.213356336178748,
+    "kenya_democratic_machine_fall2023": 8.540864292474156,
+    "food_security_part2_fall2023": 8.108172438492034,
+    "udemy_statistical_inference_fall2023": 8.403798274134802,
+    "biases_spring2024": 8.340803278510625,
+    "water_fleas_spring2024": 8.843216667102556,
+    "surveillance_ethics_spring2024": 8.529959476567182,
+    "freshman_reflection_spring2024": 8.28841234979675,
+    "procrastination_fall2023_GROUP": 7.3337597750779935,
+    "scientific_proposal_part2_fall2023_GROUP": 7.6173165628630715,
+    "sf_transit_survey_spring2024_GROUP": 6.899064662254041
+   },
+   "E->R": {
+    "climate_experience_fall2025": 9.626855101901322,
+    "brain_criticality_fall2025": 9.662324695341315,
+    "pulse_oximetry_fall2025": 9.928690634007177,
+    "pm25_resolution_review_spring2026": 10.211190573075774,
+    "huntingtons_news_spring2026": 9.558481852965897,
+    "pica_playgrounds_lba_spring2026": 9.496321143175916,
+    "airport_queue_fall2025_GROUP": 7.277784744089594
+   },
+   "R->E": {
+    "college_persistence_fall2023": 9.128834050919295,
+    "sf_marina_food_bank_fall2023": 9.068759198719444,
+    "kenya_democratic_machine_fall2023": 8.893242526098394,
+    "food_security_part2_fall2023": 9.001394042707002,
+    "udemy_statistical_inference_fall2023": 8.91175458631665,
+    "biases_spring2024": 8.932209999409926,
+    "water_fleas_spring2024": 9.168375943423518,
+    "surveillance_ethics_spring2024": 9.153273061099732,
+    "freshman_reflection_spring2024": 9.184571265979365,
+    "procrastination_fall2023_GROUP": 7.771086531637809,
+    "scientific_proposal_part2_fall2023_GROUP": 8.297377569601855,
+    "sf_transit_survey_spring2024_GROUP": 7.549369843792408
+   },
+   "R->R": {
+    "climate_experience_fall2025": 9.572194681533151,
+    "brain_criticality_fall2025": 9.415900562585609,
+    "pulse_oximetry_fall2025": 9.606379913333077,
+    "pm25_resolution_review_spring2026": 9.715411128467997,
+    "huntingtons_news_spring2026": 9.30319931178435,
+    "pica_playgrounds_lba_spring2026": 9.49099590888037,
+    "airport_queue_fall2025_GROUP": 7.179768504690328
+   }
+  },
+  "alpha_chosen": {
+   "E-order1-a1.0": 260,
+   "E-order2-a(0.8, 0.5)": 73,
+   "E-order2-a(0.95, 0.5)": 187,
+   "R-order1-a3.0": 160,
+   "R-order2-a(0.95, 0.5)": 160
+  }
+ }
+}

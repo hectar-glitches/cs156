@@ -1,0 +1,89 @@
+The developing brain must balance flexibility with stability as structural connectivity increases. As Olaf Sporns and others have argued, this often places neural systems near an “edge of chaos,” where activity is neither completely disordered nor rigidly synchronized, and small changes in coupling can have large effects on collective dynamics. Statistical physics offers a natural language for this regime. In many interacting systems, increasing coupling drives a transition toward a critical point, beyond which the system locks into highly ordered, synchronized states (Stanley, 1971). Operating near criticality can enhance information transmission and dynamic range (Shew & Plenz, 2013), but overshooting it risks runaway synchronization, which manifests as a seizure-like activity, which is more common during periods of rapid structural maturation (da Silva, 2003). Recent work has shown that these ideas transfer directly to brain networks. Das et al. (2014) demonstrated that a classical Ising model on structural connectivity can reproduce empirical functional coupling patterns, and Craig et al. (2025) extended this with heterogeneous, personalized coupling matrices to capture individual variability. These studies suggest that coupling, criticality, and collective dynamics provide a useful lens on brain organization. Here we apply this framework to development. Using an Ising-model-based Monte Carlo simulation, we let coupling density increase over developmental time on simple network models and track magnetization, susceptibility, and entropy. This allows us to ask when a maturing network approaches criticality, how close it comes to regimes of pathological synchronization, and how different developmental trajectories of structural coupling alter these outcomes. Modeling the brain To investigate how developmental changes in structural connectivity influence large-scale neural dynamics, we model the brain as a network of interacting regions whose activity evolves according to the Ising framework.
+
+We compare two network architectures that differ in their topological organization: a random Erdős–Rényi graph and a small-world Watts–Strogatz graph. Random networks usually exhibit uniformly distributed, unstructured connectivity and serve as a useful baseline for immature, weakly organized brain networks. Small-world networks, in contrast, exhibit high clustering with short average path lengths, reflecting the modular yet integrated structure observed in empirical brain networks. Comparing these architectures allows us to assess how topological features influence the system’s approach to criticality as coupling increases over development.
+
+The stochastic evolution of the system is simulated using a Monte Carlo procedure based on the Metropolis–Hastings algorithm.
+
+This rule ensures that the sequence of spin configurations samples from the Boltzmann distribution, allowing the system to explore both low- and high-energy states with their probability comparable to that of their thermodynamic likelihood. As a result, the Metropolis–Hastings update introduces intrinsic stochasticity into the system, capturing spontaneous fluctuations in neural activity. To quantify how the system behaves under each developmental trajectory and network architecture, we measure several standard observables from statistical physics.
+
+Together, these quantities allow us to characterize whether and when the system approaches a critical regime, and how this process differs across developmental profiles and network architectures. Several modeling assumptions are necessary to keep the system tractable while still capturing the mechanisms of interest. First, each brain region is represented as a binary variable, an abstraction that omits the continuous firing rates and complex nature of real neurons but retains the essential interactions required to study collective synchronization. This simplification is standard in large-scale Ising-based brain models and has been shown to reproduce empirical functional connectivity patterns despite its coarse resolution (Craig et al., 2025). Second, temperature is modeled as a single global parameter rather than a region-specific or dynamic quantity. Although real neural systems exhibit heterogeneous and context-dependent noise levels, a uniform temperature provides a controlled way to separate the effects of stochastic fluctuations from those of structural coupling. Third, developmental change is implemented solely through increases in coupling strength rather than through rewiring or changes in excitation–inhibition balance.
+
+These assumptions do not aim to capture the full biological complexity of brain development; rather, they define a simplified but interpretable model in which the contributions of topology, coupling, and stochasticity can be examined in isolation. By focusing on the minimal ingredients necessary for critical phenomena to arise, the model allows us to probe how developmental increases in structural coupling interact with network structure to shape large-scale neural dynamics. Overall, this modeling framework provides a controlled setting in which to examine how different structural organizations and developmental coupling trajectories influence the emergence of coordinated neural states.
+
+In this section, we derive simple theoretical predictions for how the Ising system on a network should behave as coupling increases during development. We focus on three complementary perspectives: a mean-field estimate of the critical coupling, a stability analysis of the disordered state, and an information-theoretic description of entropy near the transition.
+
+Directly computing Z is intractable for large N , which motivates the use of approximations.
+
+The intuition here is that, instead of treating each neighbor sj as a random variable, we replace it by its mean value mj .
+
+This equation relates the mean spin mi of each node to a weighted sum of the mean spins of its neighbors. To make further progress, we consider behavior near the critical point, where the magnetizations mi are small and the system is just beginning to depart from the disordered state.
+
+This determinant condition is closely related to the definition of eigenvalues.
+
+Thus a nontrivial solution for m first becomes possible when T equals an eigenvalue of J.
+
+This expression predicts that, at a fixed temperature T , the critical coupling density depends inversely on the largest eigenvalue of the adjacency matrix.
+
+The mean-field derivation above describes where a nonzero solution for the magnetization becomes possible.
+
+To understand the behavior of this linear system, we consider the eigenvalue of J.
+
+Entropy and variability near criticality The mean-field and stability analyses focus on the onset of nonzero magnetization. We now consider how the entropy of the system behaves as coupling increases. Entropy provides a measure of variability in the spin configurations explored by the system over time.
+
+Computing this quantity exactly is not feasible for large N , but we can gain intuition from a mean-field approximation.
+
+This expression reveals how entropy depends on the magnetization.
+
+Although the simple mean-field expression S(M ) does not capture all correlation effects, it suggests a qualitative picture: entropy remains relatively high and slowly varying in the disordered phase, drops more rapidly as the system transitions into an ordered phase, and exhibits significant variability near the critical point.
+
+Network topologies For the empirical analysis, we instantiate the abstract Ising model on two families of synthetic structural networks that differ in their topological organization.
+
+Erdős–Rényi (ER) networks. To model immature, weakly organized connectivity, we use an Erdős–Rényi random graph G(N, p). For each unordered pair of nodes (i, j), an edge is included independently with probability p.
+
+The corresponding adjacency matrix AER is obtained directly from the generated graph.
+
+Watts–Strogatz (WS) networks. To capture the more structured, small-world organization of mature brain networks, we generate Watts–Strogatz graphs with N nodes, initial ring degree k (each node connected to its k/2 nearest neighbors on either side), and rewiring probability prewire . Starting from the regular ring lattice, each edge is independently rewired with probability prewire to a randomly chosen node, avoiding self-loops and duplicate edges. This yields networks that combine high clustering (as in the lattice) with short average path lengths (as in random graphs). Coupling matrix and developmental scaling.
+
+This represents gradual, steady maturation. • Exponential growth.
+
+This trajectory spends time in a low-coupling regime, then passes quickly through the critical region before saturating at a high-coupling plateau.
+
+Monte Carlo simulation and empirical observables To connect the theoretical predictions to observed behavior, we simulate the stochastic evolution of the Ising system using Monte Carlo methods.
+
+The primary update rule is the single-spin Metropolis–Hastings algorithm, which implements the probabilistic dynamics described in the modeling section.
+
+A sequence of such steps defines a Markov chain on spin configurations whose stationary distribution is the Boltzmann distribution at temperature T . We also implement the Wolff cluster algorithm. The Wolff method updates clusters of aligned spins rather than single sites, greatly reducing critical slowing down. We use it only for validation; all main developmental results are reported using the more biologically plausible single-spin Metropolis dynamics. We track five standard variables.
+
+Averaging and uncertainty quantification.
+
+At this critical value, the disordered state with zero magnetization loses stability and a nonzero magnetization becomes possible.
+
+Second, the mean-field self-consistency equation for the magnetization predicts a characteristic shape for the order parameter.
+
+Third, the linear stability analysis implies a dynamical signature of criticality: critical slowing down.
+
+Finally, the theory predicts systematic effects of network topology and developmental trajectory. At matched network size and average degree, Watts–Strogatz small-world networks, which combine high clustering with short path lengths, are expected to display slightly sharper magnetization transitions and higher peak susceptibilities than Erdős–Rényi random graphs, reflecting enhanced facilitation of collective dynamics by small-world structure. When observables are plotted as functions of developmental time t, these trajectories are therefore predicted to produce distinct “critical periods,” ranging from brief to extended windows during which susceptibility and entropy change most rapidly. Together, these predictions provide a direct bridge between the mathematical analysis of Section 2 and the simulation-based empirical work that follows. In Section 3, we will systematically compare these theoretical expectations to Monte Carlo results across network architectures, developmental trajectories, and system sizes.
+
+We begin by confirming that the model behaves as expected (Figure 1). ER and WS networks generated by the graph routines have the anticipated qualitative structure.
+
+Together, these checks establish that network generation, development, and stochasticity are consistent.
+
+Because our main developmental simulations use single-spin Metropolis dynamics, we next checked that the resulting observables agree with a more efficient cluster sampler. Figure 2 compares Metropolis–Hastings and Wolff algorithms on the same WS network across a range of coupling densities. In the Wolff sampler, mean cluster size increases sharply near the critical point, indicating the formation of large correlated domains, but this change in microscopic update statistics does not materially alter the macroscopic observables used in our analyses. These comparisons suggest that Metropolis dynamics, while slower near criticality, provide reliable estimates of the order parameter and response functions in the system sizes considered here.
+
+We then characterized the phase transition using heat capacity.
+
+This confirms the main spectral prediction of the analysis: networks with larger spectral radius reach criticality at lower coupling densities.
+
+Figure 4: Eigenvalue prediction of critical coupling.
+
+On a fixed WS network, we compared linear, exponential, and sigmoidal trajectories that span the same overall range of coupling densities (Figure 5A).
+
+Exponential growth keeps the system subcritical for most of development and crosses criticality abruptly near the end, whereas the sigmoidal trajectory generates a more symmetric critical period centered around its midpoint.
+
+Finally, we visualized how spatial correlation structure changes across the transition (Figure 6). In the subcritical regime, pairwise spin–spin correlations are weak away from the diagonal and the network snapshot shows a disordered mosaic of up and down spins. Near the empirical critical coupling, the correlation matrix develops extended patches, and the network view reveals contiguous domains of aligned nodes, reflecting the emergence of long-range correlations. In the supercritical regime, most nodes share the same state, correlations become uniformly high, and the spatial pattern collapses to a nearly uniform configuration with only a few isolated defects.
+
+Figure 6: Spatial correlation patterns across the phase transition in a WS network.
+
+These empirical results support the theoretical picture from our theoretical section. The largest eigenvalue of the structural network predicts the location of the critical coupling in a mean-field sense; heat capacity, susceptibility, and entropy all display characteristic signatures of a continuous transition; Metropolis and cluster dynamics agree on the macroscopic behavior; and the shape of the developmental coupling trajectory modulates the timing, but not the coupling level, at which critical-like dynamics emerge.
+
+Entropy behaves in a complementary manner, remaining high and relatively flat in the disordered regime and then declining as the network enters an ordered phase. These results confirm that, in this simplified model, developmental strengthening of coupling naturally drives the system through a phase-transition-like point where responsiveness and fluctuations are maximal. Comparing architectures, the WS network consistently reaches criticality at a lower coupling density than the ER network, reflecting its larger spectral radius and more structured topology. In contrast, the ER network requires stronger coupling to achieve comparable levels of global synchronization and shows a somewhat broader, less pronounced critical region. From a developmental perspective, this suggests that the emergence of small-world organization can be viewed as a structural “shortcut” to criticality: it allows the maturing brain to enter a regime of high responsiveness and efficient integration without uniformly increasing coupling everywhere. Framed as advice to a hypothetical “developmental engineer” or clinician, the simulations support a strategy of guiding networks toward, but not far beyond, the critical coupling density. In the model, WS-like architectures reach this window earlier and with less total coupling than ER-like random networks, suggesting that developmental processes that promote clustered, short-path connectivity (rather than purely random addition of links) may support efficient transitions into a critical, high-plasticity regime while limiting the need for globally strong coupling.
